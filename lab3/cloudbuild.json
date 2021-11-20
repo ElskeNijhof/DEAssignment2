@@ -1,0 +1,52 @@
+{
+ "steps": [
+  {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "-t",
+        "gcr.io/de2021-324520/trainingdbapi:latest",
+        "./lab3/trainingdb-cp"
+       ]
+   },
+   {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "-t",
+        "gcr.io/de2021-324520/trainingcpapi:latest",
+        "./lab3/training-cp"
+       ]
+   },
+   {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": [
+        "build",
+        "-t",
+        "gcr.io/de2021-324520/predictioncpapi:latest",
+        "./lab3/prediction-cp"
+       ]
+   },
+   {
+       "name": "gcr.io/cloud-builders/docker",
+       "args": [
+           "push",
+           "gcr.io/de2021-324520/trainingdbapi:latest"
+        ]
+   },
+   {
+       "name": "gcr.io/cloud-builders/docker",
+       "args": [
+           "push",
+           "gcr.io/de2021-324520/trainingcpapi:latest"
+        ]
+   },
+   {
+       "name": "gcr.io/cloud-builders/docker",
+       "args": [
+           "push",
+           "gcr.io/de2021-324520/predictioncpapi:latest"
+        ]
+   }
+   ]
+ }
