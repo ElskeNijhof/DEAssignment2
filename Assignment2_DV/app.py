@@ -24,9 +24,9 @@ def visualize_week(week):
   df = pd.read_csv('gs://bucket/file_data')
   df.head()
   temp_str=''
-  with open (temp_file_name, "r") as myfile:
-     #temp_str = myfile.read().replace('\n', '')
-     temp_str = myfile.read().query("Week_number" == week)
+  # with open (temp_file_name, "r") as myfile:
+  #    #temp_str = myfile.read().replace('\n', '')
+  #    temp_str = myfile.read().query("Week_number" == week)
     
   #return temp_str 
   return df.head()
