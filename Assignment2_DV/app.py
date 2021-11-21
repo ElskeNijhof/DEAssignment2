@@ -2,18 +2,25 @@ import os
 from flask import Flask
 from google.cloud import storage
 import pandas as pd
-#import gcsfs
+
 
 app = Flask(__name__)
-
-##
 app.config["DEBUG"] = True
-##
+
+
+import gcsfs # type: ignore
 
 
 #@app.route('/visualization/week:<week>', methods=['GET'])
 @app.route('/visualization/')
 def hello_world():
+
+
+  fs = gcsfs.GCSFileSystem(project='prefab-clover-330908')
+  with fs.open('output_batch_ass2/out_ass2_batch', 'rb') as f:
+    df = pd.read_csv(f)
+    return df
+
 
   storage_client = storage.Client()
   file_data = 'out_ass2_batch'
@@ -23,13 +30,13 @@ def hello_world():
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
 
-  df = pd.read_csv('gs://output_batch_ass2/out_ass2_batch')
+  #df = pd.read_csv('gs://output_batch_ass2/out_ass2_batch')
   # temp_str=''
-  # with open (temp_file_name, "r") as myfile:
-  #    temp_str = myfile.read()
+   with open (temp_file_name, "r") as myfile:
+      temp_str = myfile.read()
     
-  # return temp_str 
-  return df.head()
+   return temp_str 
+  #return df.head()
 
 #if __name__ == "__main__":
 #    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 5000))) 
