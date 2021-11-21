@@ -113,7 +113,7 @@ services:
 
   visualization_service:
     build:
-      context: /DEAssignment2/lab5/deployment/Assignment2_DV
+      context: /DEAssignment2/Assignment2_DV
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
