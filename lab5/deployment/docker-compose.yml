@@ -116,4 +116,4 @@ services:
       context: ./../DEAssignment2/lab5/deployment/Assignment2_DV
       dockerfile: Dockerfile
     ports:
-      - 5000:5000"
+      - "5000:5000"
