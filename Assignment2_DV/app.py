@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
-import gcsfs # type: ignore
+#import gcsfs # type: ignore
 
 
 #@app.route('/visualization/week:<week>', methods=['GET'])
@@ -16,11 +16,11 @@ import gcsfs # type: ignore
 def hello_world():
 
 
-  fs = gcsfs.GCSFileSystem(project='prefab-clover-330908')
-  fs.ls('output_batch_ass2')
-  with fs.open('output_batch_ass2/out_ass2_batch', 'rb') as f:
-    df = pd.read_csv(f)
-    return fs.ls('output_batch_ass2')
+  # fs = gcsfs.GCSFileSystem(project='prefab-clover-330908')
+  # fs.ls('output_batch_ass2')
+  # with fs.open('output_batch_ass2/out_ass2_batch', 'rb') as f:
+  #   df = pd.read_csv(f)
+  #   return fs.ls('output_batch_ass2')
 
 
   storage_client = storage.Client()
