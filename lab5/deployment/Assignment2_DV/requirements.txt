@@ -1,3 +1,9 @@
-Flask==1.1.1
-gunicorn==19.9.0
-google-cloud-storage==1.19.1
+#Flask==1.1.1
+#gunicorn==19.9.0
+#google-cloud-storage==1.19.1
+
+flask
+pandas
+numpy
+requests
+scikit-learn
