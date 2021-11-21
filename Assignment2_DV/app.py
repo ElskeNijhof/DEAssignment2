@@ -22,15 +22,15 @@ def visualize_week():
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
-  df = pd.read_csv('gs://output_batch_ass2/file_data')
+  #df = pd.read_csv('gs://output_batch_ass2/file_data')
   #df.head()
-  # temp_str=''
-  # with open (temp_file_name, "r") as myfile:
-  #    #temp_str = myfile.read().replace('\n', '')
-  #    temp_str = myfile.read().query("Week_number" == week)
+  temp_str=''
+  with open (temp_file_name, "r") as myfile:
+     #temp_str = myfile.read().replace('\n', '')
+     temp_str = myfile.read()
     
-  #return temp_str 
-  return df.head()
+  return temp_str 
+  #return df.head()
 
 #if __name__ == "__main__":
 #    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 5000))) 
