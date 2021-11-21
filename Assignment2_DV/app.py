@@ -9,8 +9,8 @@ app.config["DEBUG"] = True
 ##
 
 
-@app.route('/visualization/')
-def hello_world():
+@app.route('/visualization/week:<week>', methods=['GET'])
+def visualize_week(week):
 
   storage_client = storage.Client()
   file_data = 'out_ass2_batch'
@@ -22,8 +22,9 @@ def hello_world():
 
   temp_str=''
   with open (temp_file_name, "r") as myfile:
-     temp_str = myfile.read().replace('\n', '')
-
+     #temp_str = myfile.read().replace('\n', '')
+     temp_str = myfile.read().query("Week_number" == week)
+    
   return temp_str
 
 #if __name__ == "__main__":
