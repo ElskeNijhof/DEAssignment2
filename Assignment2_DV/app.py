@@ -27,7 +27,7 @@ def hello_world():
   temp_str=''
   with open (temp_file_name, "r") as myfile:
      #temp_str = myfile.read().replace('\n', '')
-     temp_str = myfile.read().replace('\n', '')
+     temp_str = myfile.read()
     
   return temp_str 
   #return df.head()
