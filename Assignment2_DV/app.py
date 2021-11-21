@@ -22,7 +22,7 @@ def visualize_week():
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
-  df = pd.read_csv('gs://bucket/file_data')
+  df = pd.read_csv('gs://output_batch_ass2/file_data')
   #df.head()
   # temp_str=''
   # with open (temp_file_name, "r") as myfile:
