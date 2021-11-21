@@ -17,9 +17,10 @@ def hello_world():
 
 
   fs = gcsfs.GCSFileSystem(project='prefab-clover-330908')
+  fs.ls('output_batch_ass2')
   with fs.open('output_batch_ass2/out_ass2_batch', 'rb') as f:
     df = pd.read_csv(f)
-    return df
+    return fs.ls('output_batch_ass2')
 
 
   storage_client = storage.Client()
