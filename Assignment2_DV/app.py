@@ -11,8 +11,9 @@ app.config["DEBUG"] = True
 ##
 
 
-@app.route('/visualization/week:<week>', methods=['GET'])
-def visualize_week(week):
+#@app.route('/visualization/week:<week>', methods=['GET'])
+@app.route('/visualization/')
+def visualize_week():
 
   storage_client = storage.Client()
   file_data = 'out_ass2_batch'
@@ -22,8 +23,8 @@ def visualize_week(week):
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
   df = pd.read_csv('gs://bucket/file_data')
-  df.head()
-  temp_str=''
+  #df.head()
+  # temp_str=''
   # with open (temp_file_name, "r") as myfile:
   #    #temp_str = myfile.read().replace('\n', '')
   #    temp_str = myfile.read().query("Week_number" == week)
