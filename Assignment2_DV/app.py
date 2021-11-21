@@ -1,8 +1,8 @@
 import os
 from flask import Flask
 from google.cloud import storage
-import pandas as pd
-import gcsfs
+#import pandas as pd
+#import gcsfs
 
 app = Flask(__name__)
 
