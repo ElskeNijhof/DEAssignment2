@@ -1,6 +1,8 @@
 import os
 from flask import Flask
 from google.cloud import storage
+import pandas as pd
+import gcsfs
 
 app = Flask(__name__)
 
@@ -19,13 +21,15 @@ def visualize_week(week):
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
-
+  df = pd.read_csv('gs://bucket/file_data')
+  df.head()
   temp_str=''
   with open (temp_file_name, "r") as myfile:
      #temp_str = myfile.read().replace('\n', '')
      temp_str = myfile.read().query("Week_number" == week)
     
-  return temp_str
+  #return temp_str 
+  return df.head()
 
 #if __name__ == "__main__":
 #    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 5000))) 
