@@ -4,6 +4,11 @@ from google.cloud import storage
 
 app = Flask(__name__)
 
+##
+app.config["DEBUG"] = True
+##
+
+
 @app.route('/visualization/')
 def hello_world():
 
@@ -21,5 +26,10 @@ def hello_world():
 
   return temp_str
 
-if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 5000))) 
+#if __name__ == "__main__":
+#    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 5000))) 
+
+
+##
+app.run(host='0.0.0.0', port=5000)
+##
