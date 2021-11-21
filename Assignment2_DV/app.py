@@ -13,7 +13,7 @@ app.config["DEBUG"] = True
 
 #@app.route('/visualization/week:<week>', methods=['GET'])
 @app.route('/visualization/')
-def visualize_week():
+def hello_world():
 
   storage_client = storage.Client()
   file_data = 'out_ass2_batch'
