@@ -37,13 +37,23 @@ def best_performing(week):
   temp_file_name = 'best_performing_table'
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
-  blob.download_to_filename(temp_file_name)
+  
+  stats = storage.Blob(bucket= bucket, name = name).exists(storage_client)
+  if blob is not None and stats==True:
+    blob.download_to_filename(temp_file_name)
 
   df_input = pd.read_csv(temp_file_name)
   df_output_week = df_input[df_input["Week_number"] == '{}'].format(week)
 
   html = "<h3>Hello, these are the best performing NAS of this week</h3>"
   return html, df_output_week
+
+
+  name = 'folder1/another_folder/file_i_want_to_check.txt'   
+
+
+
+
 
   
 app.run(host='0.0.0.0', port=5000)
