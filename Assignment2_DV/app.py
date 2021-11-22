@@ -59,7 +59,7 @@ def best_performing():
 
   #df_output_week1 = df_input[df_input["Week_number"] == 1]
   #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  return plt
+  return fig
 
 
      
