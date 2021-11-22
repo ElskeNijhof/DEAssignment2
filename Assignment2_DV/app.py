@@ -20,27 +20,24 @@ def hello_world():
   blob.download_to_filename(temp_file_name)
 
   temp_str=''
-  header = ''
+  #header = ''
   with open (temp_file_name, "r") as myfile:
-    header = myfile.readline()
-    temp_str = myfile.read()  # moet nog gefixt worden
+    #header = myfile.readline()
+    temp_str = myfile.read()  
     
-  return header, temp_str 
+  return temp_str 
 
 
  
 @app.route('/best_performing/week:<week>', methods=['GET'])
 def best_performing(week):
   storage_client = storage.Client()
-  file_data = 'best_performing_NAS'
+  file_data = 'best_performing_NAS.csv'
   bucket_name = 'airplane_chris_ass2'
   temp_file_name = 'best_performing_table'
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
-  
-  stats = storage.Blob(bucket= bucket, name = name).exists(storage_client)
-  if blob is not None and stats==True:
-    blob.download_to_filename(temp_file_name)
+  blob.download_to_filename(temp_file_name)
 
   df_input = pd.read_csv(temp_file_name)
   df_output_week = df_input[df_input["Week_number"] == '{}'].format(week)
