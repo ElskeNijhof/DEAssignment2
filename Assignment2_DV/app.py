@@ -3,6 +3,8 @@ from flask import Flask
 from google.cloud import storage
 import pandas as pd
 import csv
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -42,9 +44,22 @@ def best_performing():
   
   df_input = pd.read_csv(temp_file_name)
   #df_output_week = df_input[df_input["Week_number"] == '{}'].format(week)
+  df_output_week1 = df_input[df_input["Week_number"] == 1]
+  city_avgNASDelay = df_output_week1.drop(columns=["Month", "Week_number", "Best_performing_cities"])
+  
+  fig, ax = plt.subplots(figsize=(10,8), facecolor='white', dpi= 80)
+  ax.vlines(x=city_avgNASDelay.index, ymin=-0.1, ymax=city_avgNASDelay.avg_NASDelay, color='firebrick', alpha=0.7, linewidth=20)
+
+
+
+  # Title, Label, Ticks and Ylim
+  ax.set_title('Best performing NAS', fontdict={'size':18})
+  ax.set(ylabel='Average NAS Delay', ylim=(-0.1, 0.2))
+  plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=12)
+
   #df_output_week1 = df_input[df_input["Week_number"] == 1]
   #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  return df_input
+  return plt
 
 
      
