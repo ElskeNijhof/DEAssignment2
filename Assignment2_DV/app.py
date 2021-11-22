@@ -32,7 +32,7 @@ def hello_world():
   blob.download_to_filename(temp_file_name)
 
   #df = pd.read_csv('gs://output_batch_ass2/out_ass2_batch')
-  # temp_str=''
+  temp_str=''
   with open (temp_file_name, "r") as myfile:
     temp_str = myfile.readline()
     
