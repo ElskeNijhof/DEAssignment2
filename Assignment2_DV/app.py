@@ -46,7 +46,7 @@ def best_performing():
   return html, df_output_week1
 
 
-  name = 'folder1/another_folder/file_i_want_to_check.txt'   
+     
 
 
 
