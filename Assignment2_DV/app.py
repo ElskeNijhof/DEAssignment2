@@ -2,8 +2,7 @@ import os
 from flask import Flask
 from google.cloud import storage
 import pandas as pd
-import csv
-from io import StringIO
+
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -30,24 +29,12 @@ def hello_world():
   temp_file_name = 'batch_output'
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
-  blob = blob.download_as_string()
-  blob = blob.decode('utf-8')
-  blob = StringIO(blob)
-  #blob.download_to_filename(temp_file_name)
-
-  names = csv.reader(blob)  #then use csv library to read the content
-  row = []
-  for name in names:
-    row = row.append(name[0])
-  
-  return row
-
-   
+  blob.download_to_filename(temp_file_name)
 
   #df = pd.read_csv('gs://output_batch_ass2/out_ass2_batch')
   # temp_str=''
   with open (temp_file_name, "r") as myfile:
-    temp_str = myfile.read()
+    temp_str = myfile.readline()
     
   return temp_str 
   #return df.head()
