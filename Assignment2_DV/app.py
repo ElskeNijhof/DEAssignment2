@@ -33,10 +33,10 @@ def hello_world():
 
   #df = pd.read_csv('gs://output_batch_ass2/out_ass2_batch')
   # temp_str=''
-   with open (temp_file_name, "r") as myfile:
-      temp_str = myfile.read()
+  with open (temp_file_name, "r") as myfile:
+    temp_str = myfile.read()
     
-   return temp_str 
+  return temp_str 
   #return df.head()
 
 #if __name__ == "__main__":
