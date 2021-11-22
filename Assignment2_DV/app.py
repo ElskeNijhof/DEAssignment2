@@ -7,7 +7,6 @@ import csv
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-#@app.route('/visualization/week:<week>', methods=['GET'])
 @app.route('/visualization/')
 def hello_world():
 
@@ -29,8 +28,9 @@ def hello_world():
 
 
  
-@app.route('/best_performing/week:<week>', methods=['GET'])
-def best_performing(week):
+#@app.route('/best_performing/week:<week>', methods=['GET'])
+@app.route('/best_performing/')
+def best_performing():
   storage_client = storage.Client()
   file_data = 'best_performing_NAS.csv'
   bucket_name = 'airplane_chris_ass2'
