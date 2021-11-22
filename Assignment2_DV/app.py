@@ -88,6 +88,8 @@ def best_performing():
   #df_output_week1 = df_input[df_input["Week_number"] == 1]
   #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
   #return html.format(figure=fig)
+  #<p>{{ image }}</p>
+  #<img src={{ image }} alt="Chart" height="142" width="42">
   return html
 
 
