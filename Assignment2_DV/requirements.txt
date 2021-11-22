@@ -5,3 +5,5 @@ requests
 scikit-learn
 google.cloud.storage
 gcsfs
+csv
+io
