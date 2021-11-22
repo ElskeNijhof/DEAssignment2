@@ -28,10 +28,16 @@ def hello_world():
   return header, temp_str 
 
 
-#if __name__ == "__main__":
-#    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 5000))) 
+ 
+@app.route('/best_performing/week:<week>', methods=['GET'])
+def best_performing(week):
+  storage_client = storage.Client()
+  file_data = 'best_performing_NAS'
+  bucket_name = 'airplane_chris_ass2'
+  temp_file_name = 'best_performing_table'
+  bucket = storage_client.get_bucket(bucket_name)
+  blob = bucket.get_blob(file_data)
+  blob.download_to_filename(temp_file_name)
 
 
-##
 app.run(host='0.0.0.0', port=5000)
-##
