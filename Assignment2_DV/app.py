@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from google.cloud import storage
 import pandas as pd
-
+import csv
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -39,5 +39,11 @@ def best_performing(week):
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
 
+  df_input = pd.read_csv("best_performing_NAS")
+  df_output_week = df_input[df_input["Week_number"] == '{}'].format(week)
 
+  html = "<h3>Hello, these are the best performing NAS of this week</h3>"
+  return html, df_output_week
+
+  
 app.run(host='0.0.0.0', port=5000)
