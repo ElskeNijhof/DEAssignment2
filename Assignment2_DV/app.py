@@ -57,10 +57,11 @@ def best_performing():
   ax.set(ylabel='Average NAS Delay', ylim=(-0.1, 0.2))
   plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=12)
   fig.savefig('my_plot.png')
-  html = "<h3>Hello, these are the best performing NAS of this week</h3>" \
-    "<figure>" \
-      "<img src= {'my_plot.png'}>" \
-        "<figure>" 
+  html = """ <h3>Hello, these are the best performing NAS of this week</h3>
+    <figure> 
+      <img src= "my_plot.png" style="width:100%"> 
+        </figure>
+        """ 
   
   
   #"<img src= 'my_plot.png'/>" \
