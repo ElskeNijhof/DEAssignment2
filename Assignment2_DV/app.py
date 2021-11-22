@@ -39,11 +39,12 @@ def best_performing():
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
 
+  
   df_input = pd.read_csv(temp_file_name)
   #df_output_week = df_input[df_input["Week_number"] == '{}'].format(week)
-  df_output_week1 = df_input[df_input["Week_number"] == 1]
-  html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  return html, df_output_week1
+  #df_output_week1 = df_input[df_input["Week_number"] == 1]
+  #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
+  return df_input
 
 
      
