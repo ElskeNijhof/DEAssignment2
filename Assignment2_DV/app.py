@@ -1,10 +1,15 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from google.cloud import storage
 import pandas as pd
 import csv
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+import io
+import base64
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
+
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -56,6 +61,21 @@ def best_performing():
   ax.set_title('Best performing NAS', fontdict={'size':18})
   ax.set(ylabel='Average NAS Delay', ylim=(-0.1, 0.2))
   plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=12)
+
+
+  # Convert plot to PNG image
+  pngImage = io.BytesIO()
+  FigureCanvas(fig).print_png(pngImage)
+    
+  # Encode PNG image to base64 string
+  pngImageB64String = "data:image/png;base64,"
+  pngImageB64String += base64.b64encode(pngImage.getvalue()).decode('utf8')
+    
+  return render_template("image.html", image=pngImageB64String)
+
+
+
+
   fig.savefig('best_performing/my_plot.png')
   html = """ <h3>Hello, these are the best performing NAS of this week</h3>
     <figure> 
