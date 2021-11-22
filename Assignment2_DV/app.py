@@ -28,8 +28,10 @@ def hello_world():
   bucket_name = 'output_batch_ass2'
   temp_file_name = 'batch_output'
   bucket = storage_client.get_bucket(bucket_name)
-  blob = bucket.get_blob(file_data)
-  blob.download_to_filename(temp_file_name)
+  #blob = bucket.get_blob(file_data)
+  #blob.download_to_filename(temp_file_name)
+
+  return bucket.head()
 
   #df = pd.read_csv('gs://output_batch_ass2/out_ass2_batch')
   # temp_str=''
