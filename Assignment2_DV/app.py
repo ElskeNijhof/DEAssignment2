@@ -59,12 +59,15 @@ def best_performing():
   fig.savefig('my_plot.png')
   html = "<h3>Hello, these are the best performing NAS of this week</h3>" \
     "<figure>" \
-      "<img src= 'my_plot.png'/>" \
-    "<figure>" 
-    
+      "<img src= {'my_plot.png'}>" \
+        "<figure>" 
+  
+  
+  #"<img src= 'my_plot.png'/>" \
   #df_output_week1 = df_input[df_input["Week_number"] == 1]
   #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  return html.format(figure=fig)
+  #return html.format(figure=fig)
+  return html
 
 
      
