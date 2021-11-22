@@ -57,9 +57,11 @@ def best_performing():
   ax.set(ylabel='Average NAS Delay', ylim=(-0.1, 0.2))
   plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=12)
 
+  html = "<h3>Hello, these are the best performing NAS of this week</h3>" \
+      "<b>{figure}</b><br/>"
   #df_output_week1 = df_input[df_input["Week_number"] == 1]
   #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  return fig
+  return html.format(figure=fig)
 
 
      
