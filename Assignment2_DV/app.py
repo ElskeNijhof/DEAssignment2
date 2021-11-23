@@ -54,7 +54,7 @@ def best_performing():
   city_avgNASDelay = df_output_week1.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
   
   fig, ax = plt.subplots(figsize=(10,8), facecolor='white', dpi= 80)
-  ax.vlines(x=city_avgNASDelay.index, ymin=-0.1, ymax=city_avgNASDelay.avg_NASDelay, color='firebrick', alpha=0.7, linewidth=20)
+  ax.vlines(x=city_avgNASDelay.index, ymin=-0.1, ymax=city_avgNASDelay.avg_NASDelay_sec, color='firebrick', alpha=0.7, linewidth=20)
 
 
 
