@@ -51,7 +51,7 @@ def best_performing():
   #df_output_week = df_input[df_input["Week_number"] == '{}'].format(week) # zodat je kan invoeren welke week en dan de bijbehorende 
   # output krijgt
   df_output_week1 = df_input[df_input["Week_number"] == 1]
-  city_avgNASDelay = df_output_week1.drop(columns=["Month", "Week_number", "Best_performing_cities"])
+  city_avgNASDelay = df_output_week1.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
   
   fig, ax = plt.subplots(figsize=(10,8), facecolor='white', dpi= 80)
   ax.vlines(x=city_avgNASDelay.index, ymin=-0.1, ymax=city_avgNASDelay.avg_NASDelay, color='firebrick', alpha=0.7, linewidth=20)
@@ -59,8 +59,8 @@ def best_performing():
 
 
   # Title, Label, Ticks and Ylim
-  ax.set_title('Best performing NAS', fontdict={'size':18})
-  ax.set(ylabel='Average NAS Delay', ylim=(-0.1, 0.2))
+  ax.set_title('Worst performing NAS', fontdict={'size':18})
+  ax.set(ylabel='Average NAS Delay (s)', ylim=(-0.1, 0.2))
   plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=12)
 
 
