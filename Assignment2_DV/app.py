@@ -48,8 +48,8 @@ def best_performing(week):
 
   
   df_input = pd.read_csv(temp_file_name)
-  x = week
-  df_output_week = df_input[df_input["Week_number"] == x]
+  week_in = int(week)
+  df_output_week = df_input[df_input["Week_number"] == week_in]
   #df_output_week1 = df_input[df_input["Week_number"] == 1]
   city_avgNASDelay = df_output_week.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
   
