@@ -24,7 +24,7 @@ def hello_world():
   # bucket = storage_client.get_bucket(bucket_name)
   # blob = bucket.get_blob(file_data)
   # blob.download_to_filename(temp_file_name)
-
+  
 
   storage_client = storage.Client()
   file_data = '.spark-bigquery-app-20211123113132-0002-128a3a4c-fcba-4df8-9400-0c1a331969b4/'
