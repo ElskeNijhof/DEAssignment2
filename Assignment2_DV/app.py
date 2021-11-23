@@ -39,9 +39,9 @@ def hello_world():
 @app.route('/best_performing/')
 def best_performing():
   storage_client = storage.Client()
-  file_data = 'best_performing_NAS.csv'
-  bucket_name = 'airplane_chris_ass2'
-  temp_file_name = 'best_performing_table'
+  file_data = 'worst_performing.csv'
+  bucket_name = 'batch_worst_seconds'
+  temp_file_name = 'worst_performing_table'
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
   blob.download_to_filename(temp_file_name)
