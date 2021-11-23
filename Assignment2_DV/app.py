@@ -35,9 +35,9 @@ def hello_world():
 
 
  
-#@app.route('/best_performing/week:<week>', methods=['GET'])
-@app.route('/best_performing/')
-def best_performing():
+@app.route('/best_performing/week:<week>', methods=['GET'])
+#@app.route('/best_performing/')
+def best_performing(week):
   storage_client = storage.Client()
   file_data = 'worst_performing.csv'
   bucket_name = 'batch_worst_seconds'
@@ -48,20 +48,20 @@ def best_performing():
 
   
   df_input = pd.read_csv(temp_file_name)
-  #df_output_week = df_input[df_input["Week_number"] == '{}'].format(week) # zodat je kan invoeren welke week en dan de bijbehorende 
-  # output krijgt
-  df_output_week1 = df_input[df_input["Week_number"] == 1]
-  city_avgNASDelay = df_output_week1.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
+  x = week
+  df_output_week = df_input[df_input["Week_number"] == x]
+  #df_output_week1 = df_input[df_input["Week_number"] == 1]
+  city_avgNASDelay = df_output_week.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
   
   fig, ax = plt.subplots(figsize=(10,8), facecolor='white', dpi= 80)
-  ax.vlines(x=city_avgNASDelay.index, ymin=-0.1, ymax=city_avgNASDelay.avg_NASDelay_sec, color='firebrick', alpha=0.7, linewidth=20)
+  ax.vlines(x=city_avgNASDelay.index, ymin=0, ymax=city_avgNASDelay.avg_NASDelay_sec, color='firebrick', alpha=0.7, linewidth=20)
 
 
 
   # Title, Label, Ticks and Ylim
   ax.set_title('Worst performing NAS', fontdict={'size':18})
-  ax.set(ylabel='Average NAS Delay (s)', ylim=(-0.1, 0.2))
-  plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=12)
+  ax.set(ylabel='Average NAS Delay (s)', ylim=(0, 100))
+  plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=10)
 
 
   # Convert plot to PNG image
