@@ -22,7 +22,7 @@ def kafka_python_producer_async(producer, msg, topic):
 
 if __name__ == '__main__':
     producer = KafkaProducer(bootstrap_servers='34.67.21.205:9092')  # use your VM's external IP Here!
-    with open("C:\Software_JADS\stream_2008_till_8_2e.csv", "r") as f:
+    with open("C:\Software_JADS\DEAssignment2\lab7\data", "r") as f:
         rows = f.readlines()
         #csv_reader = reader(f)
         #header = next(csv_reader)
