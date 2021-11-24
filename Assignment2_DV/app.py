@@ -16,7 +16,7 @@ app.config["DEBUG"] = True
 
 @app.route('/visualization/stream/')
 def hello_world():
-  read_from_topic
+  #read_from_topic
  
   #html = "<h3>Hello, Streaming Process</h3>"
     
@@ -33,7 +33,7 @@ def read_from_topic():
     for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
       for i in msg.key.decode("utf-8"):
         dicts[i] = msg.value.decode("utf-8")[i]
-      return dicts 
+    return dicts 
       
 
  
