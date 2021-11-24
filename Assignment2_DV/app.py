@@ -16,20 +16,27 @@ app.config["DEBUG"] = True
 
 @app.route('/visualization/stream/')
 def hello_world():
-  
-  
-
-
-  
+  read_from_topic
+ 
+  #html = "<h3>Hello, Streaming Process</h3>"
     
-  return temp_str 
+  return read_from_topic()
 
+def read_from_topic():
+    kafka_consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
+                             auto_offset_reset='latest',
+                             consumer_timeout_ms=100000)          # latest reads only latest values
+    kafka_consumer.subscribe(topics=["output_stream"])
+    
+
+    dicts = {}
+    for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
+      for i in msg.key.decode("utf-8"):
+        dicts[i] = msg.value.decode("utf-8")[i]
+      return dicts 
+      
 
  
-
-
-
-
 
 
 

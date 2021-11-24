@@ -3,8 +3,10 @@ from kafka import KafkaConsumer, TopicPartition
 
 def read_from_topic(kafka_consumer, topic):
     kafka_consumer.subscribe(topics=[topic])
-    for msg in kafka_consumer:
+    for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
+        return 
         print(msg.value.decode("utf-8"))
+
 
 
 def read_from_topic_with_partition(kafka_consumer, topic):
@@ -24,7 +26,7 @@ def read_from_topic_with_partition_offset(kafka_consumer, topic):
 
 if __name__ == '__main__':
     consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
-                             auto_offset_reset='earliest',
-                             consumer_timeout_ms=100000)
+                             auto_offset_reset='latest',
+                             consumer_timeout_ms=100000)          # latest reads only latest values
     print(consumer.topics())
     read_from_topic(consumer, 'output_stream')
