@@ -16,35 +16,23 @@ app.config["DEBUG"] = True
 
 @app.route('/visualization/stream/')
 def hello_world():
-
-  # storage_client = storage.Client()
-  # file_data = 'out_ass2_batch'
-  # bucket_name = 'output_batch_ass2'
-  # temp_file_name = 'batch_output'
-  # bucket = storage_client.get_bucket(bucket_name)
-  # blob = bucket.get_blob(file_data)
-  # blob.download_to_filename(temp_file_name)
+  
   
 
-  storage_client = storage.Client()
-  file_data = '.spark-bigquery-app-20211123113132-0002-128a3a4c-fcba-4df8-9400-0c1a331969b4/'
-  bucket_name = "temp_stream_chris"
-  temp_file_name = 'batch_output'
-  bucket = storage_client.get_bucket(bucket_name)
-  blob = bucket.get_blob(file_data)
-  blob.download_to_filename(temp_file_name)
 
   
-  temp_str=''
-  #header = ''
-  with open (temp_file_name, "r") as myfile:
-    #header = myfile.readline()
-    temp_str = myfile.read()  
     
   return temp_str 
 
 
  
+
+
+
+
+
+
+
 @app.route('/best_performing/week:<week>', methods=['GET'])
 #@app.route('/best_performing/')
 def best_performing(week):
