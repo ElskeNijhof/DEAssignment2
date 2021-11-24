@@ -4,7 +4,7 @@ from kafka import KafkaConsumer, TopicPartition
 def read_from_topic(kafka_consumer, topic):
     kafka_consumer.subscribe(topics=[topic])
     for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
-        return 
+        #return 
         print(msg.value.decode("utf-8"))
 
 

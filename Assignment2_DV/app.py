@@ -1,105 +1,101 @@
-import os
-from flask import Flask, render_template
-from google.cloud import storage
-import pandas as pd
-import csv
-import matplotlib.patches as patches
-import matplotlib.pyplot as plt
-import io
-import base64
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-#from kafka import KafkaConsumer
+# import os
+# from flask import Flask, render_template
+# from google.cloud import storage
+# import pandas as pd
+# import csv
+# import matplotlib.patches as patches
+# import matplotlib.pyplot as plt
+# import io
+# import base64
+# from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+# #from kafka import KafkaConsumer
 
 
-app = Flask(__name__)
-app.config["DEBUG"] = True
+# app = Flask(__name__)
+# app.config["DEBUG"] = True
 
-@app.route('/visualization/stream/')
-def hello_world():
-  
-  #read_from_topic
+# @app.route('/visualization/stream/')
+# def hello_world():
+
+#   #read_from_topic
  
-  html = "<h3>Hello, Streaming Process</h3>"
-  return html  
-  #return read_from_topic()
+#   html = "<h3>Hello, Streaming Process</h3>"
+#   return html  
+#   #return read_from_topic()
 
-  # def read_from_topic():
-  #     kafka_consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
-  #                              auto_offset_reset='latest',
-  #                              consumer_timeout_ms=100000)          # latest reads only latest values
-  #     kafka_consumer.subscribe(topics=["output_stream"])
+#   # def read_from_topic():
+#   #     kafka_consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
+#   #                              auto_offset_reset='latest',
+#   #                              consumer_timeout_ms=100000)          # latest reads only latest values
+#   #     kafka_consumer.subscribe(topics=["output_stream"])
     
-
-  #     dicts = {}
-  #     for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
-  #       for i in msg.key.decode("utf-8"):
-  #         dicts[i] = msg.value.decode("utf-8")[i]
-  #     return dicts 
+#   #     dicts = {}
+#   #     for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
+#   #       for i in msg.key.decode("utf-8"):
+#   #         dicts[i] = msg.value.decode("utf-8")[i]
+#   #     return dicts 
       
 
  
-
-
-
-@app.route('/best_performing/week:<week>', methods=['GET'])
-#@app.route('/best_performing/')
-def best_performing(week):
-  storage_client = storage.Client()
-  file_data = 'worst_performing.csv'
-  bucket_name = 'batch_worst_seconds'
-  temp_file_name = 'worst_performing_table'
-  bucket = storage_client.get_bucket(bucket_name)
-  blob = bucket.get_blob(file_data)
-  blob.download_to_filename(temp_file_name)
+# @app.route('/best_performing/week:<week>', methods=['GET'])
+# #@app.route('/best_performing/')
+# def best_performing(week):
+#   storage_client = storage.Client()
+#   file_data = 'worst_performing.csv'
+#   bucket_name = 'batch_worst_seconds'
+#   temp_file_name = 'worst_performing_table'
+#   bucket = storage_client.get_bucket(bucket_name)
+#   blob = bucket.get_blob(file_data)
+#   blob.download_to_filename(temp_file_name)
 
   
-  df_input = pd.read_csv(temp_file_name)
-  week_in = int(week)
-  df_output_week = df_input[df_input["Week_number"] == week_in]
-  #df_output_week1 = df_input[df_input["Week_number"] == 1]
-  city_avgNASDelay = df_output_week.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
+#   df_input = pd.read_csv(temp_file_name)
+#   week_in = int(week)
+#   df_output_week = df_input[df_input["Week_number"] == week_in]
+#   #df_output_week1 = df_input[df_input["Week_number"] == 1]
+#   city_avgNASDelay = df_output_week.drop(columns=["Month", "Week_number", "Worst_performing_cities"])
   
-  fig, ax = plt.subplots(figsize=(10,8), facecolor='white', dpi= 80)
-  ax.vlines(x=city_avgNASDelay.index, ymin=0, ymax=city_avgNASDelay.avg_NASDelay_sec, color='firebrick', alpha=0.7, linewidth=20)
+#   fig, ax = plt.subplots(figsize=(10,8), facecolor='white', dpi= 80)
+#   ax.vlines(x=city_avgNASDelay.index, ymin=0, ymax=city_avgNASDelay.avg_NASDelay_sec, color='firebrick', alpha=0.7, linewidth=20)
 
 
 
-  # Title, Label, Ticks and Ylim
-  ax.set_title('Worst performing NAS', fontdict={'size':18})
-  ax.set(ylabel='Average NAS Delay (s)', ylim=(0, 100))
-  plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=10)
+#   # Title, Label, Ticks and Ylim
+#   ax.set_title('Worst performing NAS', fontdict={'size':18})
+#   ax.set(ylabel='Average NAS Delay (s)', ylim=(0, 100))
+#   plt.xticks(city_avgNASDelay.index, city_avgNASDelay.City.str.upper(), rotation=10, horizontalalignment='right', fontsize=10)
 
 
-  # Convert plot to PNG image
-  pngImage = io.BytesIO()
-  FigureCanvas(fig).print_png(pngImage)
+#   # Convert plot to PNG image
+#   pngImage = io.BytesIO()
+#   FigureCanvas(fig).print_png(pngImage)
     
-  # Encode PNG image to base64 string
-  pngImageB64String = "data:image/png;base64,"
-  pngImageB64String += base64.b64encode(pngImage.getvalue()).decode('utf8')
+#   # Encode PNG image to base64 string
+#   pngImageB64String = "data:image/png;base64,"
+#   pngImageB64String += base64.b64encode(pngImage.getvalue()).decode('utf8')
     
-  return render_template("image.html", image=pngImageB64String)
+#   return render_template("image.html", image=pngImageB64String)
 
 
 
 
-  fig.savefig('best_performing/my_plot.png')
-  html = """ <h3>Hello, these are the best performing NAS of this week</h3>
-    <figure> 
-      <img src= "my_plot.png" style="width:100%"/> 
-        </figure>
-        """ 
+#   fig.savefig('best_performing/my_plot.png')
+#   html = """ <h3>Hello, these are the best performing NAS of this week</h3>
+#     <figure> 
+#       <img src= "my_plot.png" style="width:100%"/> 
+#         </figure>
+#         """ 
   
   
-  #"<img src= 'my_plot.png'/>" \
-  #df_output_week1 = df_input[df_input["Week_number"] == 1]
-  #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  #return html.format(figure=fig)
-  #<p>{{ image }}</p>
-  #<img src={{ image }} alt="Chart" height="142" width="42">
-  return html
+#   #"<img src= 'my_plot.png'/>" \
+#   #df_output_week1 = df_input[df_input["Week_number"] == 1]
+#   #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
+#   #return html.format(figure=fig)
+#   #<p>{{ image }}</p>
+#   #<img src={{ image }} alt="Chart" height="142" width="42">
+#   return html
 
 
      
   
-app.run(host='0.0.0.0', port=5000)
+# app.run(host='0.0.0.0', port=5000)
