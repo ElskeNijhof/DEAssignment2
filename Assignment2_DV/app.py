@@ -18,9 +18,9 @@ app.config["DEBUG"] = True
 def hello_world():
   #read_from_topic
  
-  #html = "<h3>Hello, Streaming Process</h3>"
-    
-  return read_from_topic()
+  html = "<h3>Hello, Streaming Process</h3>"
+  return html  
+  #return read_from_topic()
 
 def read_from_topic():
     kafka_consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
