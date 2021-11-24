@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import io
 import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from kafka import KafkaConsumer
+#from kafka import KafkaConsumer
 
 
 app = Flask(__name__)
@@ -22,18 +22,18 @@ def hello_world():
   return html  
   #return read_from_topic()
 
-# def read_from_topic():
-#     kafka_consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
-#                              auto_offset_reset='latest',
-#                              consumer_timeout_ms=100000)          # latest reads only latest values
-#     kafka_consumer.subscribe(topics=["output_stream"])
+ # def read_from_topic():
+ #     kafka_consumer = KafkaConsumer(bootstrap_servers='35.239.130.25:9092',  # use your VM's external IP Here!
+ #                              auto_offset_reset='latest',
+ #                              consumer_timeout_ms=100000)          # latest reads only latest values
+ #     kafka_consumer.subscribe(topics=["output_stream"])
     
 
-#     dicts = {}
-#     for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
-#       for i in msg.key.decode("utf-8"):
-#         dicts[i] = msg.value.decode("utf-8")[i]
-#     return dicts 
+ #     dicts = {}
+ #     for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
+ #       for i in msg.key.decode("utf-8"):
+ #         dicts[i] = msg.value.decode("utf-8")[i]
+ #     return dicts 
       
 
  
@@ -100,10 +100,5 @@ def best_performing(week):
 
 
      
-
-
-
-
-
   
 app.run(host='0.0.0.0', port=5000)
