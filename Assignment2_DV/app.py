@@ -21,7 +21,7 @@ def hello_world():
   return render_template("stream.html", result=read_from_topic())
 
 def read_from_topic():
-      kafka_consumer = KafkaConsumer(bootstrap_servers='34.121.92.45:9092',  # use your VM's external IP Here!
+      kafka_consumer = KafkaConsumer(bootstrap_servers='146.148.61.135:9092',  # use your VM's external IP Here!
       auto_offset_reset='latest',
       consumer_timeout_ms=100000)          # latest reads only latest values
       kafka_consumer.subscribe(topics=["output_stream"])
