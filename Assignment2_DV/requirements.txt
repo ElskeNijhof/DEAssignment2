@@ -6,4 +6,4 @@ scikit-learn
 google.cloud.storage
 gcsfs
 matplotlib
-kafka
+kafka-python==2.0.2
