@@ -38,8 +38,6 @@ def read_from_topic():
 
 
       
-
- 
 @app.route('/best_performing/week:<week>', methods=['GET'])
 #@app.route('/best_performing/')
 def best_performing(week):
