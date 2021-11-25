@@ -1,5 +1,9 @@
+from jinja2 import Environment
 
-<!doctype html>
+jinja_env = Environment(autoescape=True)
+
+template = jinja_env.from_string("""
+
 <html>
    <body>
 
@@ -17,4 +21,4 @@
        
    </body>
 </html>
-
+""")

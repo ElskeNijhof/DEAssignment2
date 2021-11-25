@@ -9,6 +9,7 @@ import io
 import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from kafka import KafkaConsumer
+from jinja2 import Environment
 
 
 app = Flask(__name__)
