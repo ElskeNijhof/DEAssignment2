@@ -15,6 +15,14 @@ from jinja2 import Environment
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+@app.route('/')
+def home_page():
+  return render_template("home.html")
+
+
+
+
+
 @app.route('/visualization/stream/')
 def hello_world():
 
@@ -22,7 +30,7 @@ def hello_world():
   return render_template("stream.html", result=read_from_topic())
 
 def read_from_topic():
-      kafka_consumer = KafkaConsumer(bootstrap_servers='35.193.237.209:9092',  # use your VM's external IP Here!
+      kafka_consumer = KafkaConsumer(bootstrap_servers='34.134.61.166:9092',  # use your VM's external IP Here!
       auto_offset_reset='latest',
       consumer_timeout_ms=100000)          # latest reads only latest values
       kafka_consumer.subscribe(topics=["output_stream"])

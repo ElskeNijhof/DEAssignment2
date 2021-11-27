@@ -10,14 +10,37 @@ template = jinja_env.from_string("""
       <h1>Stream Processing Dashboard</h1>
       <h2>How long the average delay is of the planes leaving and arriving at each city right now!</h2>
       
-      <table>
-        {% for key, value in result.items() %}
-           <tr>
-                <th> {{ key }} </th>
-                <td> {{ value }} </td>
-           </tr>
-        {% endfor %}
-        </table>
+      <style>
+         table, th, td {
+           border:1px solid black;
+         }
+         </style>
+         
+         <table style="width:100px; border: 1px solid black">
+         <tr>
+         <th> ArrTime </th>
+         <th> Dest </th>
+         <th> avg_ArrTime </th>
+         <th> avg_DepTime </th>
+         </tr>
+         <tr>
+         {% for key, value in result.items() %}
+             ArrTime, Dest = key.split()
+             avg_ArrTime, avg_DepTime = value.split()
+         <tr>
+             <td> {{ ArrTime }} </td>
+         </tr>
+         <tr>
+             <td> {{ Dest }} </td>
+         </tr>
+         <tr>
+             <td> {{ avg_ArrTime }} </td>
+         </tr>
+         <tr>
+             <td> {{ avg_DepTime }} </td>
+         </tr>
+         {% endfor %}
+         </table>
        
    </body>
 </html>
