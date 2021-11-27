@@ -25,20 +25,23 @@ template = jinja_env.from_string("""
          </tr>
          <tr>
          {% for key, value in result.items() %}
-             ArrTime, Dest = key.split()
-             avg_ArrTime, avg_DepTime = value.split()
+         {% for ArrTime, Dest in key.split() %}
+         
          <tr>
              <td> {{ ArrTime }} </td>
          </tr>
          <tr>
              <td> {{ Dest }} </td>
          </tr>
+         {% endfor %}
+         {% for avg_ArrTime, avg_DepTime in value.split() %}
          <tr>
              <td> {{ avg_ArrTime }} </td>
          </tr>
          <tr>
              <td> {{ avg_DepTime }} </td>
          </tr>
+         {% endfor %}
          {% endfor %}
          </table>
        
