@@ -92,8 +92,8 @@ footer {
 {
             // Selecting the input element and get its value
             var inputVal = document.getElementById("weekNumber").value;
-     var webpage = "./week";
-     webpage = webpage + inputVal +".html"; 
+     var webpage = "./week:";
+     webpage = webpage + inputVal; 
      document.getElementById("label1").innerHTML = "Week number: "+inputVal;
      document.getElementById("label2").innerHTML = webpage;
      location.href = webpage;
@@ -108,7 +108,7 @@ footer {
     <p>This is the location of the picture.
 <label id="label2"></label>
 </p>
-<img src= {{ image }} style = "width:80%"/>
+<img src= {{ image }} width = "400" height = "400"/>
    </article>
 </section>
  
