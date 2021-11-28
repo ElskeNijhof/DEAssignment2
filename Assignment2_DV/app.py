@@ -32,7 +32,7 @@ def hello_world():
 def read_from_topic():
       kafka_consumer = KafkaConsumer(bootstrap_servers='34.135.2.155:9092',  # use your VM's external IP Here!
       auto_offset_reset='latest',
-      consumer_timeout_ms=100000)          # latest reads only latest values
+      consumer_timeout_ms=1000000)          # latest reads only latest values
       kafka_consumer.subscribe(topics=["output_stream"])
       
       dicts = {}
