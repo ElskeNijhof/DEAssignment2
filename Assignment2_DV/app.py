@@ -27,7 +27,7 @@ def home_page():
 def hello_world():
 
   
-  return render_template("stream.html", cities, arrtimes, avg_depd, avg_arrd =read_from_topic())
+  return render_template("stream.html", dicts = read_from_topic())
 
 def read_from_topic():
       kafka_consumer = KafkaConsumer(bootstrap_servers='34.135.2.155:9092',  # use your VM's external IP Here!
@@ -43,30 +43,7 @@ def read_from_topic():
         if j == 30:
           break
 
-      i = 0
-      k = 0
-      cities = []
-      arrtimes = []
-      avg_depd = []
-      avg_arrd = []
-      for key, value in dicts.items():
-          for arr_city in key.split():
-              if (i % 2):
-                cities.append(arr_city)
-                i = i + 1
-              else:
-                arrtimes.append(arr_city)
-                i = i + 1
-          for dep_arr in value.split():
-              if (k % 2):
-                avg_depd.append(dep_arr)
-                k = k + 1
-              else:
-                avg_arrd.append(dep_arr)
-                k = k + 1
-
-
-      return cities, arrtimes, avg_depd, avg_arrd  
+      return dicts  
 
       
 @app.route('/best_performing/week:<week>', methods=['GET'])

@@ -4,21 +4,121 @@ jinja_env = Environment(autoescape=True)
 
 template = jinja_env.from_string("""
 
-<html>
-   <body>
 
-      <h1>Stream Processing Dashboard</h1>
-      <h2>How long the average delay is of the planes leaving and arriving at each city right now!</h2>
-      
-      <table>
-        {% for key, value in result.items() %}
-           <tr>
-                <th> {{ key }} </th>
-                <td> {{ value }} </td>
-           </tr>
-        {% endfor %}
-        </table>
-       
-   </body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Worst Performing Airports</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+ 
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 20px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+ 
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 10%;
+  height: 600px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+ 
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+ 
+article {
+  float: right; /*left */
+  padding: 20px;
+  width: 90%;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 600px; /* only for demonstration, should be removed */
+}
+ 
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+ 
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+    <h2>Average ArrivalDelay and DepartureDelay of flights arriving now</h2>
+</header>
+
+
+<section>
+    <nav>
+       <p id="demo">Assignment 2 Streaming Data Processing</p>
+    </nav>
+   
+<article>
+<h1>Real-time showcase of the average delays of the flights</h1>
+
+</article>
+<table>
+    {% for key, value in result.items() %}
+       <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+       </tr>
+    {% endfor %}
+    </table>
+
+
+</section>
+   
+<footer>
+    <p>Authors: Christian Vesters, Bram Biemans, Elske Nijhof, Sem Uijlen, Arte Spanjers, Victor van Sterkenburg</p>
+    <p>Group 6</p>
+    <p><a href="mailto:christian15800@gmail.com">christian15800@gmail.com</a></p>
+</footer>
+</body>
 </html>
-""")
