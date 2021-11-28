@@ -108,26 +108,24 @@ footer {
         }
      </script>
   
-  <script>
-    var str1 = window.location.href;
-    var length  = str1.length;
-    var char1 = charAt(length-2);
-    var char2 = charAt(length-1);
-    if (char1 == 'k') { str1 = char2;}
-    else
-    {
-     str1 = char1+char2;
-    }
-   
-    document.getElementById("label2").innerHTML = str1;
-  </script>
 
   </nav>
  
   <article>
-    <h1>In week X the following cities had the highest average NAS Delay</h1>
+    <h1>The following cities had the highest average NAS Delay</h1>
     <p> 
 <label id="label2"></label>
+    <script>
+          var str1 = window.location.href;
+        var length = str1.length;
+        var char1 = str1.charAt(length-2);
+        var char2 = str1.charAt(length-1);
+        if (char1 == "k") {str1=char2;}
+        else
+        {    str1 = char1+char2;
+        }
+        document.getElementById("label2").innerHTML = "This is the result for week: "+ str1;
+    </script>
 </p>
 <img src= {{ image }} class="center" height= 500 width = 500/>
    </article>

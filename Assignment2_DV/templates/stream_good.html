@@ -1,0 +1,24 @@
+from jinja2 import Environment
+
+jinja_env = Environment(autoescape=True)
+
+template = jinja_env.from_string("""
+
+<html>
+   <body>
+
+      <h1>Stream Processing Dashboard</h1>
+      <h2>How long the average delay is of the planes leaving and arriving at each city right now!</h2>
+      
+      <table>
+        {% for key, value in result.items() %}
+           <tr>
+                <th> {{ key }} </th>
+                <td> {{ value }} </td>
+           </tr>
+        {% endfor %}
+        </table>
+       
+   </body>
+</html>
+""")
