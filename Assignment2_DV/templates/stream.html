@@ -25,7 +25,8 @@ template = jinja_env.from_string("""
          </tr>
          <tr>
          {% for key, value in result.items() %}
-         {% for ArrTime, Dest in key.items().split() %}
+         {% for a in key.split() %}
+         {if i % 2 }
          
          <tr>
              <td> {{ ArrTime }} </td>
