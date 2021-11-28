@@ -107,7 +107,20 @@ footer {
      location.href = webpage;
         }
      </script>
- 
+  
+  <script>
+    var str1 = window.location.href;
+    var length  = str1.length;
+    var char1 = charAt(length-2);
+    var char2 = charAt(length-1);
+    if (char1 == 'k') { str1 = char2;}
+    else
+    {
+     str1 = char1+char2;
+    }
+   
+    document.getElementById("label2").innerHTML = str1;
+  </script>
 
   </nav>
  
