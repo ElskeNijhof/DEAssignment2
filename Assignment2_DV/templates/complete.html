@@ -103,7 +103,7 @@ footer {
      var webpage = "./week:";
      webpage = webpage + inputVal; 
      document.getElementById("label1").innerHTML = "Week number: "+inputVal;
-     document.getElementById("label2").innerHTML = webpage;
+     //document.getElementById("label2").innerHTML = webpage;
      location.href = webpage;
         }
      </script>
@@ -120,14 +120,14 @@ footer {
         var length = str1.length;
         var char1 = str1.charAt(length-2);
         var char2 = str1.charAt(length-1);
-        if (char1 == "k") {str1=char2;}
+        if (char1 == ":") {str1=char2;}
         else
         {    str1 = char1+char2;
         }
         document.getElementById("label2").innerHTML = "This is the result for week: "+ str1;
     </script>
 </p>
-<img src= {{ image }} class="center" height= 500 width = 500/>
+<img src= {{ image }} class="center" height= 475 width = 475/>
    </article>
 </section>
  
