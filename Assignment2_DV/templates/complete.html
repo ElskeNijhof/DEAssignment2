@@ -51,7 +51,14 @@ section::after {
   display: table;
   clear: both;
 }
- 
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 /* Style the footer */
 footer {
   background-color: #777;
@@ -82,7 +89,7 @@ footer {
      <p id="demo">Provide week number.</p>
  
 <label id="label1">Week number: </label><br>
-<input type="number" id="weekNumber" min="1" max="5" placeholder="0">
+<input type="number" id="weekNumber" min="1" max="52" placeholder="1">
 <br>
 <br>
 <button type="button" onclick="getInputValue();">Show week number</button>
@@ -104,11 +111,11 @@ footer {
   </nav>
  
   <article>
-    <h1>Overview</h1>
-    <p>This is the location of the picture.
+    <h1>In week X the following cities had the highest average NAS Delay</h1>
+    <p>
 <label id="label2"></label>
 </p>
-<img src= {{ image }} width = "400" height = "400"/>
+<img src= {{ image }} class="center" height= 500 width = 500/>
    </article>
 </section>
  
