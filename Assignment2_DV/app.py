@@ -45,11 +45,12 @@ def read_from_topic():
         
       return dicts 
 
-
       
 @app.route('/best_performing/week:<week>', methods=['GET'])
 #@app.route('/best_performing/')
 def best_performing(week):
+ 
+  
   storage_client = storage.Client()
   file_data = 'worst_performing.csv'
   bucket_name = 'batch_worst_seconds'
@@ -84,27 +85,7 @@ def best_performing(week):
   pngImageB64String = "data:image/png;base64,"
   pngImageB64String += base64.b64encode(pngImage.getvalue()).decode('utf8')
     
-  return render_template("image.html", image=pngImageB64String)
-
-
-
-
-  fig.savefig('best_performing/my_plot.png')
-  html = """ <h3>Hello, these are the best performing NAS of this week</h3>
-    <figure> 
-      <img src= "my_plot.png" style="width:100%"/> 
-        </figure>
-        """ 
-  
-  
-  #"<img src= 'my_plot.png'/>" \
-  #df_output_week1 = df_input[df_input["Week_number"] == 1]
-  #html = "<h3>Hello, these are the best performing NAS of this week</h3>"
-  #return html.format(figure=fig)
-  #<p>{{ image }}</p>
-  #<img src={{ image }} alt="Chart" height="142" width="42">
-  return html
-
+  return render_template("complete.html", image=pngImageB64String)
 
      
   
