@@ -27,7 +27,7 @@ def home_page():
 def hello_world():
 
   
-  return render_template("stream.html", dicts = read_from_topic())
+  return render_template("stream_good.html", result = read_from_topic())
 
 def read_from_topic():
       kafka_consumer = KafkaConsumer(bootstrap_servers='34.135.2.155:9092',  # use your VM's external IP Here!
