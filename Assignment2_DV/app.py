@@ -34,7 +34,7 @@ def read_from_topic():
       auto_offset_reset='earliest',
       enable_auto_commit=True,
       auto_commit_interval_ms = 1000,
-      consumer_timeout_ms=50)         
+      consumer_timeout_ms=5000)         
       kafka_consumer.subscribe(topics=["output_stream"])
       
       dicts = {}
