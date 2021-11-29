@@ -34,8 +34,7 @@ def read_from_topic():
       auto_offset_reset='earliest',
       enable_auto_commit=True,
       auto_commit_interval_ms = 1000,
-      group_id = 'group 6',
-      consumer_timeout_ms=1000000)          # latest reads only latest values
+      group_id = 'my-group')         
       kafka_consumer.subscribe(topics=["output_stream"])
       
       dicts = {}
