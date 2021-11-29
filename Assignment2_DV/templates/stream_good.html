@@ -110,31 +110,16 @@ footer {
     
     <table style="width:100px; border: 1px solid black">
     <tr>
-        <th> ArrTime </th>
-        <th> Dest </th>
-        <th> avg_ArrTime </th>
-        <th> avg_DepTime </th>
+        <th> ArrTime Dest</th>
+        <th> avg_ArrTime avg_DepTime</th>
     </tr>
-    <script> 
-     var i = 0
-     var k = 0
-    
-     for (key,value in result.items())
-           for (arr_city in key.split())
-                if (i % 2) {
-                    cities.append(arr_city)
-                }
-       
-       
-
-       
-       
-                <tr>
-            <th> {{ key }} </th>
-            <td> {{ value }} </td>
-       </tr>
-    {% endfor %}
-</table>
+    <tr>
+     {% for key, value in result.items() %}
+        <td> {{ key }} </td>
+        <td> {{ value }} </td>
+     </tr>
+     {% endfor %}
+     </table>
 </article>
 
 </section>
