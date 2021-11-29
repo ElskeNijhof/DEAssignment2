@@ -36,17 +36,33 @@ def read_from_topic():
       auto_commit_interval_ms = 1000)         
       kafka_consumer.subscribe(topics=["output_stream"])
       
-      dicts = {}
-      j = 0
-      for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
-        j = j + 1 
-        dicts[msg.key.decode("utf-8")] = msg.value.decode("utf-8")
-        if j == 30:
-          break
+      return(generator_function(kafka_consumer))
+      # dicts = {}
+      # j = 0
+      # for msg in kafka_consumer:      # build a list/dict and append. return up to 100 
+      #   j = j + 1 
+      #   dicts[msg.key.decode("utf-8")] = msg.value.decode("utf-8")
+      #   if j == 30:
+      #     break
 
       return dicts  
 
-      
+def generator_function(kafka_consumer):
+    #if consumer.isEmpty():
+    #    return False 
+    j = 0
+    dicts = {}
+    for msg in kafka_consumer:
+        j = j + 1
+        dicts[msg.key.decode("utf-8")] = msg.value.decode("utf-8")
+        if j == 20:
+            yield dicts
+            j = 0
+            dicts = {}
+            continue
+
+
+
 @app.route('/best_performing/week:<week>', methods=['GET'])
 #@app.route('/best_performing/')
 def best_performing(week):
