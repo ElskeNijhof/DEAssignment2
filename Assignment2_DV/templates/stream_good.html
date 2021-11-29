@@ -1,11 +1,3 @@
-from jinja2 import Environment
-
-jinja_env = Environment(autoescape=True)
-
-template = jinja_env.from_string("""
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,13 +102,13 @@ footer {
     
     <table style="width:100px; border: 1px solid black">
     <tr>
-        <th> ArrTime Dest</th>
-        <th> avg_ArrTime avg_DepTime</th>
+        <th width="50%"> ARRTIME&nbsp;&nbsp;DEST </th>  
+        <th width="30%"> AVG_ARRTIME&nbsp;&nbsp;AVG_DEPTIME</th>
     </tr>
     <tr>
      {% for key, value in result.items() %}
-        <td> {{ key }} </td>
-        <td> {{ value }} </td>
+        <td width="50%"> {{ key }} </td>
+        <td width="30%"> {{ value }} </td>
      </tr>
      {% endfor %}
      </table>
