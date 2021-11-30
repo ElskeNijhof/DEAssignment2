@@ -30,7 +30,7 @@ def hello_world():
   return render_template("stream_good.html", result = read_from_topic())
 
 def read_from_topic():
-      kafka_consumer = KafkaConsumer('numtest', bootstrap_servers='35.193.178.232:9092',  # use your VM's external IP Here!
+      kafka_consumer = KafkaConsumer('numtest', bootstrap_servers='35.226.9.245:9092',  # use your VM's external IP Here!
       auto_offset_reset='earliest',
       enable_auto_commit=True,
       auto_commit_interval_ms = 1000)         
@@ -53,8 +53,11 @@ def best_performing(week):
  
   
   storage_client = storage.Client()
-  file_data = 'worst_performing.csv'
-  bucket_name = 'batch_worst_seconds'
+
+  # file_data = 'worst_performing.csv'
+  # bucket_name = 'batch_worst_seconds'
+  file_data = 'ass2_batchresults.csv'
+  bucket_name = 'ass2_showingresults'
   temp_file_name = 'worst_performing_table'
   bucket = storage_client.get_bucket(bucket_name)
   blob = bucket.get_blob(file_data)
