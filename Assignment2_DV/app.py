@@ -30,7 +30,7 @@ def hello_world():
   return render_template("stream_good.html", result = read_from_topic())
 
 def read_from_topic():
-      kafka_consumer = KafkaConsumer('numtest', bootstrap_servers='35.226.9.245:9092',  # use your VM's external IP Here!
+      kafka_consumer = KafkaConsumer('numtest', bootstrap_servers='34.121.76.104:9092',  # use your VM's external IP Here!
       auto_offset_reset='earliest',
       enable_auto_commit=True,
       auto_commit_interval_ms = 1000)         
